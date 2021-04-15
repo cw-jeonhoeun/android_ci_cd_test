@@ -37,11 +37,11 @@ jobs:
           name: Update Signed APK
           path: app/build/outputs/apk/release/app-release-unsigned-signed.apk
           #path: ${{steps.sign_app.outputs.signedReleaseFile}}
-      - uses: actions/download-artifact@v2
-        id: download
-        with:
-          name: 'Download Artifact'
-          path: app/build/outputs/apk/release/app-release-unsigned-signed.apk
+      #- uses: actions/download-artifact@v2
+      #  id: download
+      #  with:
+      #    name: 'Download Artifact'
+      #    path: app/build/outputs/apk/release/app-release-unsigned-signed.apk
       - name: Sharing on slack
         uses: rtCamp/action-slack-notify@v2.1.0
         env:
