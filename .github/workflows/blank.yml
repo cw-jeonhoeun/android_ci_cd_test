@@ -42,8 +42,11 @@ jobs:
           keyPassword: ${{ secrets.KEY_PASSWORD }}
         env:
           BUILD_TOOLS_VERSION: "30.0.2"
-          
+      #- name: Extract Signed APK
+      #  run: 7z x ${{steps.sign_app.outputs.signedReleaseFile}}
+        
       - uses: actions/upload-artifact@v2
         with:
           name: Update Signed APK
-          path: ${{steps.sign_app.outputs.signedReleaseFile}}
+          path: app/build/outputs/apk/release/app-release-unsigned-signed.apk
+          #path: ${{steps.sign_app.outputs.signedReleaseFile}}
