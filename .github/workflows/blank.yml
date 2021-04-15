@@ -37,7 +37,7 @@ jobs:
           name: Update Signed APK
           path: app/build/outputs/apk/release/app-release-unsigned-signed.apk
           #path: ${{steps.sign_app.outputs.signedReleaseFile}}
-      - uses: actions/download-artifact@vs
+      - uses: actions/download-artifact@v2
         id: download
         with:
           name: 'Download Artifact'
