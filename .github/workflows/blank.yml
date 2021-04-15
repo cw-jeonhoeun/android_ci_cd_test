@@ -50,3 +50,12 @@ jobs:
           name: Update Signed APK
           path: app/build/outputs/apk/release/app-release-unsigned-signed.apk
           #path: ${{steps.sign_app.outputs.signedReleaseFile}}
+      - name: Sharing on slack
+        uses: rtCamp/action-slack-notify@v2.1.0
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL }}
+          SLACK_USERNAME: "GITHUB"
+          SLACK_TITLE: "ANDROID CI CD TEST BUILD RESULT"
+          SLACK_MESSAGE: ${{step.sign_app.outputs.downloadUrl }}
+          
