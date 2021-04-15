@@ -57,7 +57,7 @@ jobs:
       - name: upload to slack
         uses: adrey/slack-file-upload-action@master
         with:
-          token: ${{ secrets.SLACK_WEBHOOK }}
+          token: ${{ secrets.SLACK_TOKEN }}
           path: test.txt
           channel: ${{ secrets.SLACK_CHANNEL }}
         
