@@ -57,5 +57,5 @@ jobs:
           SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL }}
           SLACK_USERNAME: "GITHUB"
           SLACK_TITLE: "ANDROID CI CD TEST BUILD RESULT"
-          SLACK_MESSAGE: ${{step.sign_app.outputs.downloadUrl }}
+          SLACK_MESSAGE: ${{step.sign_app.outputs.signedReleaseFile }}
           
