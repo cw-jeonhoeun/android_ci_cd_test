@@ -32,7 +32,7 @@ jobs:
       - name: Build Debug APK
         run: bash ./gradlew assembleRelease --stacktrace
       - name: Sign up APK
-        uses: r0adkllsign-android-release@v1
+        uses: r0adkll/sign-android-release@v1
         id: sign_up
         with:
           releaseDirectory: app/build/outputs/apk/release
