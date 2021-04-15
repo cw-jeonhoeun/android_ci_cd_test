@@ -46,6 +46,7 @@ jobs:
       #  run: 7z x ${{steps.sign_app.outputs.signedReleaseFile}}
         
       - uses: actions/upload-artifact@v2
+        id: download
         with:
           name: Update Signed APK
           path: app/build/outputs/apk/release/app-release-unsigned-signed.apk
@@ -57,5 +58,5 @@ jobs:
           SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL }}
           SLACK_USERNAME: "GITHUB"
           SLACK_TITLE: "ANDROID CI CD TEST BUILD RESULT"
-          SLACK_MESSAGE: ${{step.sign_app.outputs.signedReleaseFile }}
+          SLACK_MESSAGE: ${{steps.download.outputs.download-path }}
           
