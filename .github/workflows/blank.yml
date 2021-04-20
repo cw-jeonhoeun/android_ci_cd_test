@@ -13,9 +13,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: make file
-        run: bash touch test.txt
+        run: touch test.txt
       - name: write file
-        run: bash echo "this is test file" > text.txt
+        run: echo "this is test file" > text.txt
       - name: send mail
         uses: dawidd6/action-send-mail@v2
         with:
