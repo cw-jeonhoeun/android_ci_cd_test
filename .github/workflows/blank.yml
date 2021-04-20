@@ -17,17 +17,18 @@ jobs:
       - name: write file
         run: echo "this is test file" > text.txt
       - name: send mail
-        uses: AlexisMateo/sendmail-action@5
+        uses: dawidd6/action-send-mail@v2.6.0
         with:
-          smtp-server: smtp.gmail.com
-          smtp-server-port: 465
-          auth-user: ${{secrets.MAIL_USERNAME}}
-          auth-password: ${{secrets.MAIL_PASSWORD}}
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{secrets.MAIL_USERNAME}}
+          password: ${{secrets.MAIL_PASSWORD}}
           subject: Send File by Email test
           body: Build job of ${{github.repository}} completed successfully!
           from: Bot
           to: ${{secrets.TO_LIST}}
-          is-tls: false
-          commit-message: true
+          ignore_cert: true
+          content_type: text/html
+          convert_markdown: true
           
     
