@@ -23,10 +23,10 @@ jobs:
           smtp-server-port: 465
           auth-user: ${{secrets.MAIL_USERNAME}}
           auth-password: ${{secrets.MAIL_PASSWORD}}
-          title: Send File by Email test
+          subject: Send File by Email test
           body: Build job of ${{github.repository}} completed successfully!
-          to: ${{secrets.TO_LIST}}
           from: Bot
+          to: ${{secrets.TO_LIST}}
           is-tls: false
           commit-message: true
           
