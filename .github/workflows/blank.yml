@@ -1,0 +1,33 @@
+name: Send mail
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+jobs:
+  send:
+    name: Send mail
+    runs-on: ubuntu-latest
+    steps:
+      - name: make file
+        run: bash touch test.txt
+      - name: write file
+        run: bash echo "this is test file" > text.txt
+      - name: send mail
+        uses: dawidd6/action-send-mail@v2
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{secrets.MAIL_USERNAME}}
+          password: ${{secrets.MAIL_PASSWORD}}
+          subject: Send File by Email test
+          body: Build job of ${{github.repository}} completed successfully!
+          to: ${{secrets.TO_LIST}}
+          from: Bot
+          ignore_cert: true
+          content_type: text/html
+          
+    
