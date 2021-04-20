@@ -46,6 +46,6 @@ jobs:
           ignore_cert: true
           content_type: text/html
           convert_markdown: true
-          attachments: signed.apk
+          attachments: signed.doc
           
     
