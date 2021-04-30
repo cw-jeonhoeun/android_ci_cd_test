@@ -1,0 +1,26 @@
+name: Upload To Google Drive
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+jobs:
+  buildAndSendAPK:
+    name: Generate APK and Upload to Google Drive
+    runs-on: ubuntu-latest
+    steps:
+      - name: make file
+        run: bash echo "text" > text.txt
+      - name: upload to google drive
+        uses: satackey/action-google-drive@v1
+        with:
+          skicka-tokencache-json: ${{ secrets.SKICKA_TOKENCACHE_JSON }}
+          upload-from: text.txt
+          upload-to: /path/to/upload
+
+          # For those who set up Google Drive API client ID and secret themselves
+          google-client-id: ${{ secrets.GOOGLE_CLIENT_ID }}
+          google-client-secret: ${{ secrets.GOOGLE_CLIENT_SECRET }}  
