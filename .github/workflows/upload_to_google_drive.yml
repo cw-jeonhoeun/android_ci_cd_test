@@ -20,6 +20,7 @@ jobs:
           skicka-tokencache-json: ${{ secrets.SKICKA_TOKENCACHE_JSON }}
           upload-from: text.txt
           upload-to: /path/to/upload
+          code: 100
 
           # For those who set up Google Drive API client ID and secret themselves
           google-client-id: ${{ secrets.GOOGLE_CLIENT_ID }}
