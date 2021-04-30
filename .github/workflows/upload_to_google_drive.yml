@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: make file
-        run: bash echo "text" > text.txt
+        run: echo "text" > text.txt
       - name: upload to google drive
         uses: satackey/action-google-drive@v1
         with:
