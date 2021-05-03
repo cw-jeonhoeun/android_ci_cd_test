@@ -1,0 +1,49 @@
+name: Send mail
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+jobs:
+  buildAndSendAPK:
+    name: Generate APK and Send Email
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: setup JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Build Debug APK
+        run: bash ./gradlew assembleRelease --stacktrace
+      - name: Sign up APK
+        uses: r0adkll/sign-android-release@v1
+        id: sign_app
+        with:
+          releaseDirectory: app/build/outputs/apk/release
+          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+          alias: ${{ secrets.ALIAS }}
+          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+          keyPassword: ${{ secrets.KEY_PASSWORD }}
+        env:
+          BUILD_TOOLS_VERSION: "30.0.2"          
+      - name: renameAPK
+        run: mv app/build/outputs/apk/release/app-release-unsigned-signed.apk signed.doc
+      - name: send mail
+        uses: dawidd6/action-send-mail@v2.6.0
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{secrets.MAIL_USERNAME}}
+          password: ${{secrets.MAIL_PASSWORD}}
+          subject: Send File by Email test
+          body: Build job of ${{github.repository}} completed successfully!
+          from: Bot
+          to: ${{secrets.TO_LIST}}
+          ignore_cert: true
+          content_type: text/html
+          convert_markdown: true
+          attachments: signed.doc
