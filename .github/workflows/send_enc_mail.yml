@@ -30,8 +30,8 @@ jobs:
           keyPassword: ${{ secrets.KEY_PASSWORD }}
         env:
           BUILD_TOOLS_VERSION: "30.0.2"          
-      - name: renameAPK
-        run: mv app/build/outputs/apk/release/app-release-unsigned-signed.apk signed.doc
+      - name: encAPK
+        run: enctool/encapk.sh
       - name: send mail
         uses: dawidd6/action-send-mail@v2.6.0
         with:
@@ -46,4 +46,4 @@ jobs:
           ignore_cert: true
           content_type: text/html
           convert_markdown: true
-          attachments: signed.doc
+          attachments: release.enc
