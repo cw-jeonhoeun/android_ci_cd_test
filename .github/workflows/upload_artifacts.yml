@@ -32,4 +32,11 @@ jobs:
         with:
           name: upload-artifact
           path: path/to/artifact/world.txt
+      - uses: actions/download-artifact@v2
+        id: download
+        with:
+          name: download-artifact
+          path: path/to/download
+      - name : 'Echo download path'
+        run: echo ${{steps.download.outputs.download-path}}
           
