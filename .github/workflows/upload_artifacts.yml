@@ -36,7 +36,7 @@ jobs:
         id: download
         with:
           name: download-artifact
-          path: path/to/download
+          path: path/to/artifact/world.txt
       - name : 'Echo download path'
         run: echo ${{steps.download.outputs.download-path}}
           
