@@ -25,7 +25,7 @@ jobs:
       - name: build APK
         run: bash ./gradlew assembleRelease
       - name: zip with password
-        run: zip -P password -r apk_enc.zip app/build/outputs/apk/product/release/app-product-release.apk
+        run: zip -r -j -P password apk_enc.zip app/build/outputs/apk/product/release/app-product-release.apk
       - name: send mail
         uses: dawidd6/action-send-mail@v2.6.0
         with:
