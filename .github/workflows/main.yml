@@ -26,10 +26,12 @@ jobs:
         run: bash ./gradlew assembleRelease
       - name: zip with password
         run: zip -r -j -P password apk_enc.zip ./app/build/outputs/apk/release/app-release-unsigned.apk
+      - name: install postfix
+        run: sudo apt-get install postfix
       - name: install mutt
         run: sudo apt-get install mutt
       - name: send mail  
-        run: mutt -s "title title" jeonhoeun@coway.co.kr -a ./apk_enc.zip
+        run: echo "msg msg" | mutt -s "title title" jeonhoeun@coway.co.kr -a apk_enc.zip
 #       - uses: actions/upload-artifact@v2
 #         with:
 #           name: upload-artifact
