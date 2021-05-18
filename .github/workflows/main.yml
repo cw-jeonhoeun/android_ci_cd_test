@@ -26,8 +26,6 @@ jobs:
         run: bash ./gradlew assembleRelease
       - name: zip with password
         run: zip -r -j -P password apk_enc.zip ./app/build/outputs/apk/release/app-release-unsigned.apk
-      - name: install mutt
-        run: apt-get install mutt
       - name: send mail  
         run: echo "msg msg" | mutt -s "title title" -a ./apk_enc.zip -- jeonhoeun@coway.co.kr
 #       - uses: actions/upload-artifact@v2
