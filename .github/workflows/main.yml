@@ -25,23 +25,27 @@ jobs:
       - name: build APK
         run: bash ./gradlew assembleRelease
       - name: zip with password
-        run: zip -r -j -P password apk_enc.z ./app/build/outputs/apk/release/app-release-unsigned.apk
-      - uses: actions/upload-artifact@v2
-        with:
-          name: upload-artifact
-          path: apk_enc.z        
-      - name: send mail
-        uses: dawidd6/action-send-mail@v2.6.0
-        with:
-          server_address: smtp.gmail.com
-          server_port: 465
-          username: ${{secrets.MAIL_USERNAME}}
-          password: ${{secrets.MAIL_PASSWORD}}
-          subject: "[빌드완료] 샘플 앱"
-          body: "샘플앱 ${{github.repository}} 성공함.<br> commit id: ${{github.event.head_commit.id}} completed successfully!<br>압축 비밀번호:password"
-          from: Bot
-          to: ${{secrets.TO_LIST}}
-          ignore_cert: true
-          content_type: text/html
-          convert_markdown: true
-          attachments: apk_enc.z
+        run: zip -r -j -P password apk_enc.zip ./app/build/outputs/apk/release/app-release-unsigned.apk
+      - name: install mutt
+        run: apt-get install mutt
+      - name: send mail  
+        run: echo "msg msg" | mutt -s "title title" -a ./apk_enc.zip -- jeonhoeun@coway.co.kr
+#       - uses: actions/upload-artifact@v2
+#         with:
+#           name: upload-artifact
+#           path: apk_enc.z        
+#       - name: send mail
+#         uses: dawidd6/action-send-mail@v2.6.0
+#         with:
+#           server_address: smtp.gmail.com
+#           server_port: 465
+#           username: ${{secrets.MAIL_USERNAME}}
+#           password: ${{secrets.MAIL_PASSWORD}}
+#           subject: "[빌드완료] 샘플 앱"
+#           body: "샘플앱 ${{github.repository}} 성공함.<br> commit id: ${{github.event.head_commit.id}} completed successfully!<br>압축 비밀번호:password"
+#           from: Bot
+#           to: ${{secrets.TO_LIST}}
+#           ignore_cert: true
+#           content_type: text/html
+#           convert_markdown: true
+#           attachments: apk_enc.z
