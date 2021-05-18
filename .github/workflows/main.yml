@@ -24,6 +24,8 @@ jobs:
           java-version: 1.8
       - name: build APK
         run: bash ./gradlew assembleRelease
+      - name: install zip
+        run: sudo apt-get install zip
       - name: upload artifact
         uses: actions/upload-artifact@v2
         with:
