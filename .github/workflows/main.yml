@@ -24,13 +24,8 @@ jobs:
           java-version: 1.8
       - name: build APK
         run: bash ./gradlew assembleRelease
-      - name: upload artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: upload-artifact
-          path: app/build/outputs/apk/product/release/app-product-release.apk
       - name: zip with password
-        run: zip password -r apk_enc.zip app/build/outputs/apk/product/release/app-product-release.apk
+        run: zip -P password -r apk_enc.zip app/build/outputs/apk/product/release/app-product-release.apk
       - name: send mail
         uses: dawidd6/action-send-mail@v2.6.0
         with:
