@@ -30,8 +30,9 @@ jobs:
         run: sudo apt-get install postfix
       - name: install mutt
         run: sudo apt-get install mutt
-      - name: send mail  
-        run: echo "msg msg" | mutt -s "title title" jeonhoeun@coway.co.kr -a apk_enc.zip
+      - name: send mail
+        run: echo "msg msg msg" | mutt -s "title title title" -a ./apk_enc.zip -- jeonhoeun@coway.co.kr
+#         run: echo "msg msg" | mutt -s "title title" jeonhoeun@coway.co.kr -a apk_enc.zip
 #       - uses: actions/upload-artifact@v2
 #         with:
 #           name: upload-artifact
