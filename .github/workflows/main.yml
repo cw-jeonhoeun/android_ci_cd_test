@@ -26,7 +26,6 @@ jobs:
         run: bash ./gradlew assembleRelease
       - name: zip with password
         run: zip -r -j -P password apk_enc.z ./app/build/outputs/apk/release/app-release-unsigned.apk
-      - name: upload artifact
       - uses: actions/upload-artifact@v2
         with:
           name: upload-artifact
