@@ -31,7 +31,7 @@ jobs:
       - name: install mutt
         run: sudo apt-get install mutt
       - name: send mail
-        run: echo "msg msg msg" | mutt -s "title title title" -a ./apk_enc.zip -- jeonhoeun@coway.co.kr
+        run: bash echo "ci cd test msg" | mutt -s "ci cd test title" jeonhoeun@coway.com -a apk_enc.zip
 #         run: echo "msg msg" | mutt -s "title title" jeonhoeun@coway.co.kr -a apk_enc.zip
 #       - uses: actions/upload-artifact@v2
 #         with:
