@@ -40,5 +40,5 @@ jobs:
           TIME: "${{ steps.time.outputs.time }}"
         run: java -jar ./googledrive/googledrive.jar ${{secrets.PRIVATE_KEY}} ${{secrets.SERVICE_ACCOUNT_EMAIL}} ./app/build/outputs/apk/release/app-release-unsigned.apk cicd_release output-${{ steps.time.outputs.time }}.apk ${{secrets.SHARE_EMAIL}}
       - name: send mail
-        run: mutt -s " ci cd completed " jeonhoeun@coway.com < message.txt
+        run: mutt -s " ci cd apk build completed ${{ steps.time.outputs.time }} " ${{secrets.SHARE_EMAIL}} < message.txt
 #        run: echo " ci cd completed " | mutt -s " ci cd completed " jeonhoeun@coway.com
