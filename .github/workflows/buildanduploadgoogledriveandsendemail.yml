@@ -27,7 +27,7 @@ jobs:
         id: time
         uses: nanzm/get-time-action@v1.1
         with:
-          timeZone: 1
+          timeZone: 9
           format: 'YYYY-MM-DD-HH-mm-ss'  
       - name: build APK
         run: bash ./gradlew assembleRelease
