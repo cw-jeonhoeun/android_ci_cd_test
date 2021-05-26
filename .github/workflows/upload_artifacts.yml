@@ -34,15 +34,17 @@ jobs:
       - run: echo 'authoremail ${{github.event.head_commit.author.email}}'
       - run: echo 'committername ${{github.event.head_commit.committer.name}}'
       - run: echo 'committeremail ${{github.event.head_commit.committer.email}}'
+      - run: echo 'run_id ${{github.run_id}}'
       - uses: actions/upload-artifact@v2
         with:
           name: upload-artifact
           path: path/to/artifact/world.txt
-      - uses: actions/download-artifact@v2
-        id: download
-        with:
-          name: upload-artifact
-          path: path/to/down/world.txt
-      - name : 'Echo download path'
-        run: echo ${{steps.download.outputs.download-path}}
+      - run: echo 'https://github.com/cw-jeonhoeun/android_ci_cd_test/actions/runs/${{github.run_id}}'
+#       - uses: actions/download-artifact@v2
+#         id: download
+#         with:
+#           name: upload-artifact
+#           path: path/to/down/world.txt
+#       - name : 'Echo download path'
+#         run: echo ${{steps.download.outputs.download-path}}
           
