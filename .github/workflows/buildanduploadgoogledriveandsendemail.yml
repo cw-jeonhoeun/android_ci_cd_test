@@ -32,4 +32,5 @@ jobs:
       - name: upload to google drive
         run: java -jar ./googledrive/googledrive.jar ${{secrets.PRIVATE_KEY}} ${{secrets.SERVICE_ACCOUNT_EMAIL}} ./app/build/outputs/apk/release/app-release-unsigned.apk cicd_release output.apk ${{secrets.SHARE_EMAIL}}
       - name: send mail
-        run: echo " ci cd completed " | mutt -s " ci cd completed " jeonhoeun@coway.com
+        run: mutt -s " ci cd completed " jeonhoeun@coway.com < message.txt
+#        run: echo " ci cd completed " | mutt -s " ci cd completed " jeonhoeun@coway.com
