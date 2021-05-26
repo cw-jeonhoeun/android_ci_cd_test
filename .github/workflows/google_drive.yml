@@ -1,0 +1,20 @@
+# .github/workflows/main.yml
+name: Main
+on: [push]
+
+jobs:
+  my_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: touch file
+        run: echo hello > world.txt
+      - name: Upload to gdrive
+        uses: adityak74/google-drive-upload-git-action@main
+        with:
+          credentials: ${{ secrets.credentials }}
+          filename: "world.txt"
+          folderId: ${{ secrets.folderId }}
+          name: "uploaded.txt" # optional string
+          overwrite: "true" # optional boolean runner that the job will run on
