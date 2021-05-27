@@ -29,8 +29,10 @@ jobs:
         with:
           timeZone: 9
           format: 'YYYY-MM-DD-HH-mm-ss'  
-      - name: build APK
-        run: bash ./gradlew assembleRelease
+      - name: build Release APK
+        run: bash ./gradlew assemblerelease
+      - name: build Debug APK
+        run: bash ./gradlew assembledebug
       - name: install postfix
         run: sudo apt-get install postfix
       - name: install mutt
@@ -38,7 +40,6 @@ jobs:
       - name: upload to google drive
         env:
           TIME: "${{ steps.time.outputs.time }}"
-        run: java -jar ./googledrive/googledrive.jar ${{secrets.PRIVATE_KEY}} ${{secrets.SERVICE_ACCOUNT_EMAIL}} ./app/build/outputs/apk/release/app-release-unsigned.apk cicd_release output-${{ steps.time.outputs.time }}.apk ${{secrets.SHARE_EMAIL}}
+        run: java -jar ./googledrive/googledrive.jar ${{secrets.PRIVATE_KEY}} ${{secrets.SERVICE_ACCOUNT_EMAIL}} './app/build/outputs/apk/release/app-release-unsigned.apk ./app.build/outputs/apk/debug/app-debug.apk' cicd_release 'cicd-release-${{ steps.time.outputs.time }}.apk cicd-debug-${{ steps.time.outputs.time }}.apk' ${{secrets.SHARE_EMAIL}}
       - name: send mail
         run: mutt -s " ci cd apk build completed ${{ steps.time.outputs.time }} " ${{secrets.SHARE_EMAIL}} < message.txt
-#        run: echo " ci cd completed " | mutt -s " ci cd completed " jeonhoeun@coway.com
