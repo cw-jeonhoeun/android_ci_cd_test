@@ -9,23 +9,9 @@ on:
 jobs:
   setupenv:
     runs-on: ubuntu-latest
-    outputs:
-      lasttag: ${{ steps.setting.outputs.last }}
     steps:
       - uses: actions/checkout@v2
       - name: check env
-        id: setting
-        run: echo ::set-output name=last::$(echo $(git tag))
-      - name: check echo
-        run: echo ${{ steps.setting.outputs.last }}
-#          echo "::set-output name=last::$(git tag --sort=-version:refname | head -n 1 | xargs)"
-#          echo "::set-output name=lasttag::$(echo 'this is last value')"
-
-#   after:
-#     runs-on: ubuntu-latest
-#     needs: setupenv
-#     steps:
-#       - name: check result
-#         run: echo ${{needs.setupenv.outputs.lasttag}}
-#       - name: check result2
-#         run: echo ${{needs.setupenv.outputs.last}}
+      - with:
+          script: |
+            echo $(git tag)
