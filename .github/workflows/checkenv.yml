@@ -15,8 +15,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: check env
         id: setting
-        run: |
-          echo "::set-output name=last::$(git tag | xargs)"
+        run: echo ::set-output name=last::$(git tag)"
 #          echo "::set-output name=last::$(git tag --sort=-version:refname | head -n 1 | xargs)"
 #          echo "::set-output name=lasttag::$(echo 'this is last value')"
 
