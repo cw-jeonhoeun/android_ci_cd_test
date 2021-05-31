@@ -12,9 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: check env
-      - with:
-          script: |
-            TAG=$(git tag)
-      - run:
+      - run: |
+          TAG=$(git tag)
           echo 'TAG = ${TAG}'
           
