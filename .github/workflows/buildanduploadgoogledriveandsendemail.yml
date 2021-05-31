@@ -44,7 +44,7 @@ jobs:
       - name: send mail
         run: mutt -s " ci cd apk build completed ${{ steps.time.outputs.time }} " ${{secrets.SHARE_EMAIL}} < message.txt
       - name: set naver works message
-        run: bash source ./naverworks.txt
+        run: NAVERMSG="`cat naverworks.txt 2>&1`"
       - name: check naver msg  
         run: bash echo "navermsg - ${NAVERMSG}"
       - name: check naver msg 2
