@@ -16,8 +16,9 @@ jobs:
       - name: check env
         id: setting
         run: |
-          echo "::set-output name=lasttag::$(echo 'this is last value')"
-#          echo "::set-output name=last::$(git tag --sort=-version:refname | head -n 1 )"
+          echo "::set-output name=last::$(echo `git tag --sort=-version:refname | head -n 1` )"        
+#          echo "::set-output name=lasttag::$(echo 'this is last value')"
+
   after:
     runs-on: ubuntu-latest
     needs: setupenv
