@@ -14,4 +14,7 @@ jobs:
       - name: check env
       - with:
           script: |
-            echo $(git tag)
+            TAG=$(git tag)
+      - run:
+          echo 'TAG = ${TAG}'
+          
