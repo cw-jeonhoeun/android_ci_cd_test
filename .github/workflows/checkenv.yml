@@ -12,6 +12,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
-          TAG=$(git tag)
+          export TAG=$(echo $(git tag))
           echo 'TAG = ${TAG}'
           
