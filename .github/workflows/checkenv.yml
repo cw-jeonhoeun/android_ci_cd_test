@@ -11,5 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: echo $(git version)
+      - run: echo version is $(git version)
+      - run: echo status is $(git status)
+      - run: echo diff is $(git diff HEAD~1 HEAD)
           
