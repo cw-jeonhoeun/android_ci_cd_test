@@ -13,5 +13,5 @@ jobs:
       - uses: actions/checkout@v2
       - run: echo version is $(git version)
       - run: echo status is $(git status)
-      - run: echo diff is $(git diff HEAD~1 HEAD)
+      - run: echo tag is $(git tag)
           
