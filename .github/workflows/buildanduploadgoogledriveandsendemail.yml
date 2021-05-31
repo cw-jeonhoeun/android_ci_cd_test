@@ -44,13 +44,9 @@ jobs:
       - name: send mail
         run: mutt -s " ci cd apk build completed ${{ steps.time.outputs.time }} " ${{secrets.SHARE_EMAIL}} < message.txt
       - name: set naver works message
-        env:
-          NAVERMSG: ${{cat naverworks.txt}}
-        run: echo "navermsg = ${NAVERMSG}"
-      - name: check naver msg 2
-        run: cat ./naverworks.txt
-      - name: send naver works message
-        env:
-          NAVERMSG: ${{cat naverworks.txt}}      
+        run: cat ./naverworks.txt >> $GITHUB_ENV
+      - name: check naver msg
+        run: echo "NAVERMSG = $NAVERMSG"
+      - name: send naver works message      
         run: curl -d "botId=${{secrets.BOT_ID}}&applicationId=${{secrets.SHARE_EMAIL}}&content=${NAVERMSG}" -X POST ${{secrets.BOT_URL}}
         
