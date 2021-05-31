@@ -12,12 +12,11 @@ jobs:
     outputs:
       lasttag: ${{ steps.setting.outputs.lasttag }}
     steps:
-      - name: checkout repo
       - uses: actions/checkout@v2
       - name: check env
         id: setting
         run: |
-          echo "::set-output name=lasttag::$(echo 'this is last value')"        
+          echo "::set-output name=lasttag::$(echo 'this is last value')"
 #          echo "::set-output name=last::$(git tag --sort=-version:refname | head -n 1 )"
   after:
     runs-on: ubuntu-latest
@@ -25,5 +24,5 @@ jobs:
     steps:
       - name: check result
         run: echo ${{needs.setupenv.outputs.lasttag}}
-#       - name: check result2
-#         run: echo ${{needs.setupenv.outputs.last}}
+      - name: check result2
+        run: echo ${{needs.setupenv.outputs.last}}
