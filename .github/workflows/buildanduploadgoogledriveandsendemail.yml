@@ -40,7 +40,7 @@ jobs:
       - name: upload to google drive
         env:
           TIME: "${{ steps.time.outputs.time }}"
-        run: java -jar ./googledrive/googledrive.jar ${{secrets.PRIVATE_KEY}} ${{secrets.SERVICE_ACCOUNT_EMAIL}} './app/build/outputs/apk/release/app-release-unsigned.apk ./app/build/outputs/apk/debug/app-debug.apk' cicd_release 'cicd-release-${{ steps.time.outputs.time }}.apk cicd-debug-${{ steps.time.outputs.time }}.apk' 'release debug' ${{secrets.SHARE_EMAIL}}
+        run: java -jar ./googledrive/googledrive.jar 빌드자동화프로젝트 ${{secrets.PRIVATE_KEY}} ${{secrets.SERVICE_ACCOUNT_EMAIL}} './app/build/outputs/apk/release/app-release-unsigned.apk ./app/build/outputs/apk/debug/app-debug.apk' cicd_release 'cicd-release-${{ steps.time.outputs.time }}.apk cicd-debug-${{ steps.time.outputs.time }}.apk' 'release debug' ${{secrets.SHARE_EMAIL}}
       - name: send mail
         run: mutt -s " ci cd apk build completed ${{ steps.time.outputs.time }} " ${{secrets.SHARE_EMAIL}} < message.txt
       - name: set naver works message
