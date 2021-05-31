@@ -46,9 +46,9 @@ jobs:
       - name: set naver works message
         run: source ./naverworks.txt
       - name: check naver msg  
-        run: echo "navermsg - ${{NAVERMSG}} -- ${NAVERMSG}"
+        run: echo "navermsg - ${NAVERMSG}"
       - name: check naver msg 2
         run: cat ./naverworks.txt
       - name: send naver works message
-        run: curl -d "botId=${{secrets.BOT_ID}}&applicationId=${{secrets.SHARE_EMAIL}}&content=${{NAVERMSG}}" -X POST ${{secrets.BOT_URL}}
+        run: curl -d "botId=${{secrets.BOT_ID}}&applicationId=${{secrets.SHARE_EMAIL}}&content=${NAVERMSG}" -X POST ${{secrets.BOT_URL}}
         
