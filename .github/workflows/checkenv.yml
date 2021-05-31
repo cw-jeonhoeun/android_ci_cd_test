@@ -16,7 +16,8 @@ jobs:
       - name: check env
         id: setting
         run: |
-          echo "::set-output name=last::$(echo `git tag --sort=-version:refname | head -n 1` )"        
+          echo "::set-output name=last::$(git tag --sort=-version:refname | xargs)"
+#          echo "::set-output name=last::$(git tag --sort=-version:refname | head -n 1 | xargs)"
 #          echo "::set-output name=lasttag::$(echo 'this is last value')"
 
   after:
