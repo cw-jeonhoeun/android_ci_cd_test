@@ -25,5 +25,5 @@ jobs:
     steps:
       - name: check result
         run: echo ${{needs.setupenv.outputs.lasttag}}
-      - name: check result2
-        run: echo ${{needs.setupenv.outputs.last}}
+#       - name: check result2
+#         run: echo ${{needs.setupenv.outputs.last}}
