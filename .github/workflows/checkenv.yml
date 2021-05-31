@@ -10,7 +10,7 @@ jobs:
   setupenv:
     runs-on: ubuntu-latest
     outputs:
-      lasttag: ${{ steps.setting.output.last }}
+      lasttag: ${{ steps.setting.outputs.last }}
     steps:
       - uses: actions/checkout@v2
       - name: check env
