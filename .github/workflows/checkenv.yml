@@ -11,14 +11,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+      - name: test
       - run: echo version is $(git version)
       - run: echo status is $(git status)
       - run: echo tag is $(git tag)
       - run: echo last tag is $(git tag --sort=-version:refname | head -n1)
       - run: echo diff is $(git diff --name-only tag_test HEAD)
-      - run: LAST_TAG=$(git tag -l --sort=-version:refname "tag_*" 2>&1 | sed 1q)
-      - run: echo last tag value is ${LAST_TAG}
-      - run: echo last tag diff is $(git diff --name-only ${LAST_TAG} HEAD)
-      - run: git diff --name-only ${LAST_TAG} HEAD > diff.txt
+      - run: echo '::set-output LAST_TAG=$(git tag -l --sort=-version:refname "tag_*" 2>&1 | sed 1q)'
+        id: settag
+      - run: echo last tag value is ${{steps.settag.outputs.LAST_TAG}}
+      - run: echo last tag diff is $(git diff --name-only ${{steps.settag.outputs.LAST_TAG}} HEAD)
+      - run: git diff --name-only ${{steps.settag.outputs.LAST_TAG}} HEAD > diff.txt
       - run: cat ./diff.txt
           
