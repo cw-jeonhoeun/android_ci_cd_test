@@ -14,4 +14,5 @@ jobs:
       - run: echo version is $(git version)
       - run: echo status is $(git status)
       - run: echo tag is $(git tag)
+      - run: echo release is ${{ github.event.release.tag_name }}
           
