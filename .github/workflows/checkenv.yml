@@ -10,9 +10,9 @@ jobs:
   setupenv:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v1
       - run: echo version is $(git version)
       - run: echo status is $(git status)
       - run: echo tag is $(git tag)
-      - run: echo release is ${{ github.event.release.tag_name }}
+      - run: echo diff is $(git diff tag_test HEAD)
           
