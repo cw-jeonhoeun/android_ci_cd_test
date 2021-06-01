@@ -16,4 +16,5 @@ jobs:
       - run: echo tag is $(git tag)
       - run: echo last tag is $(git tag --sort=-version:refname | head -n1)
       - run: echo diff is $(git diff --name-only tag_test HEAD)
+      - run: echo last tag2 is $(git tag -l --sort=-version:refname "tag_*" 2>&1 | seq 1q)
           
