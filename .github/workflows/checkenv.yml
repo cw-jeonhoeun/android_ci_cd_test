@@ -15,7 +15,8 @@ jobs:
       - run: echo status is $(git status)
       - run: echo tag is $(git tag)
       - run: echo -n "LASTTAG=" >> lasttag.txt
-      - run: echo -n $(git tag --sort=-version:refname "tag_*" 2>&1 | sed 1q) >> lasttag.txt
+      - run: echo -n $(git tag -l --sort=-version:refname "tag_*" 2>&1 | sed 1q) >> lasttag.txt
+      - run: cat ./lasttag.txt
       - run: cat ./lasttag.txt >> $GITHUB_ENV
       - run: echo value is ${LASTTAG}
       
