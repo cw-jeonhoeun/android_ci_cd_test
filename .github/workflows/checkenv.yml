@@ -11,7 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: test
       - run: echo version is $(git version)
       - run: echo status is $(git status)
       - run: echo tag is $(git tag)
