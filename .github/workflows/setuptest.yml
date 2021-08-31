@@ -1,4 +1,4 @@
-name: MAIN CI CD
+name: setup latest test
 on:
   push:
     branches: [ main ]
@@ -16,6 +16,8 @@ jobs:
         with:
           timeZone: 9
           format: 'YYYY-MM-DD-HH-mm-ss'  
+      - name: apt-get update
+        run: sudo apt-get update
       - name: install postfix
         run: sudo apt-get install postfix
       - name: install mutt
