@@ -1,0 +1,22 @@
+name: MAIN CI CD
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  cicd:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Time
+        id: time
+        uses: nanzm/get-time-action@v1.1
+        with:
+          timeZone: 9
+          format: 'YYYY-MM-DD-HH-mm-ss'  
+      - name: install postfix
+        run: sudo apt-get install postfix
+      - name: install mutt
+        run: sudo apt-get install mutt
